@@ -7,8 +7,8 @@ console.log(allarticleJSON);
 
 allarticleJSON.forEach(element => {
     console.log(element.name);
-    let block = document.createElement("div")
-    block.setAttribute("class","nomarticle")
+    let block = document.createElement("div");
+    block.setAttribute("class","nomarticle");
     block.innerHTML = element.name;
 
     console.log(element.description);
@@ -16,10 +16,25 @@ allarticleJSON.forEach(element => {
     blockdescription.setAttribute("class","descriptionarticles");
     blockdescription.innerHTML = element.description;
 
+    console.log(element.price);
+    let blockprix = document.createElement("div");
+    blockprix.setAttribute("class","prixarticle");
+    blockprix.innerHTML = element.price;
+
+    console.log(element.imageUrl);
+    let blockimages = document.createElement("img");
+    blockimages.setAttribute("class","imagecamera");
+    blockimages.setAttribute("src",element.imageUrl);
+    blockimages.innerHTML = element.imageUrl;
+
+    
 
     let balisehtmlarticles = document.getElementById("articles");
     balisehtmlarticles.appendChild(block);
     balisehtmlarticles.appendChild(blockdescription);
+    balisehtmlarticles.appendChild(blockprix);
+    balisehtmlarticles.appendChild(blockimages);
+    
   
 
   
