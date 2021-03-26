@@ -10,13 +10,24 @@ allarticleJSON.forEach(element => {
     let block = document.createElement("div")
     block.setAttribute("class","nomarticle")
     block.innerHTML = element.name;
+
+    console.log(element.description);
+    let blockdescription = document.createElement("div");
+    blockdescription.setAttribute("class","descriptionarticles");
+    blockdescription.innerHTML = element.description;
+
+
     let balisehtmlarticles = document.getElementById("articles");
     balisehtmlarticles.appendChild(block);
+    balisehtmlarticles.appendChild(blockdescription);
+  
+
+  
 
 });
 
 
-
+// fonction ajax pour aller chercher l'API 
 
 function recherchedinfocamera() {
     var articles;
