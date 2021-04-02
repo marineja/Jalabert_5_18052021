@@ -7,8 +7,8 @@ console.log(allarticleJSON);
 
 allarticleJSON.forEach(element => {
     console.log(element.name);
-    let block = document.createElement("div");
-    block.setAttribute("class","nomarticle");
+    let block = document.createElement("h4");
+    block.setAttribute("class","card-header py-3");
     block.innerHTML = element.name;
 
     console.log(element.description);
@@ -18,7 +18,7 @@ allarticleJSON.forEach(element => {
 
     console.log(element.price);
     let blockprix = document.createElement("div");
-    blockprix.setAttribute("class","prixarticle");
+    blockprix.setAttribute("class","prix");
     blockprix.innerHTML = element.price;
 
     console.log(element.imageUrl);
@@ -27,14 +27,17 @@ allarticleJSON.forEach(element => {
     blockimages.setAttribute("src",element.imageUrl);
     blockimages.innerHTML = element.imageUrl;
 
+    let blockarticle = document.createElement ("a");
+    blockarticle.setAttribute("class","onearticle");
+    blockarticle.setAttribute("href","/pagearticle.html?id="+element._id)
+    blockarticle.appendChild(block);
+    blockarticle.appendChild(blockdescription);
+    blockarticle.appendChild(blockprix);
+    blockarticle.appendChild(blockimages);
     
 
     let balisehtmlarticles = document.getElementById("articles");
-    balisehtmlarticles.appendChild(block);
-    balisehtmlarticles.appendChild(blockdescription);
-    balisehtmlarticles.appendChild(blockprix);
-    balisehtmlarticles.appendChild(blockimages);
-    
+    balisehtmlarticles.appendChild(blockarticle);    
   
 
   
