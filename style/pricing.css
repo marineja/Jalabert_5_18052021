@@ -11,6 +11,22 @@
 }
 
 .imagecamera{
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
+  border-radius: 10px;
+  vertical-align: middle;
+}
+
+
+.onearticle{
+  width: 40%;
+	height: 300px;
+	margin: 30px auto;
+	border-radius: 10px;
+	box-shadow: 0 0 5px silver;
+	display: block;
+	position: relative;
+	text-decoration: none;
+  text-align: center;
+  color: black;
 }
