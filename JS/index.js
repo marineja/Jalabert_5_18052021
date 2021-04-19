@@ -59,3 +59,6 @@ function recherchedinfocamera() {
     xhttp.send();
     return articles;
   }
+
+
+//recuperation des données selectionnées par l'utilisateur et envoie du panier

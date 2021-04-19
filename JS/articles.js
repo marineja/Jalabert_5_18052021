@@ -36,9 +36,12 @@ let blockarticle = document.createElement('div');
  
 
   var blockselect = document.createElement('select');
+  blockselect.setAttribute("name","option_produit");
+  blockselect.setAttribute("id","option_produit");
   
   let optionduselect = document.createElement('option');
   optionduselect.innerHTML = "Choisissez votre lentille";
+
   optionduselect.setAttribute("value","");
   blockselect.appendChild(optionduselect);
 
@@ -54,14 +57,12 @@ let blockarticle = document.createElement('div');
   });
 
 let boutonacheter = document.createElement('button');
-boutonacheter.setAttribute("class", "boutonacheter");
+boutonacheter.setAttribute("id", "boutonacheter");
 boutonacheter.innerHTML = "acheter l'article";
 
 /*ajouter evenement click*/
 boutonacheter.addEventListener("click",function(){ 
 
-
-alert("bonjour")
 
 
 
@@ -99,3 +100,64 @@ function recherchedinfocamera() {
     xhttp.send();
     return articles;
   }
+
+
+//recuperation des données selectionnées par l'utilisateur et envoie du panier
+
+// selection id du formulaire
+/*
+var idForm = document.querySelector("#option_produit");
+
+//mettre le choix de l'utilisateur dans une variable
+
+var choixForm = idForm.value;
+*/
+// selection du bouton acheter l'article
+
+var btn_envoyerPanier = document.querySelector("#boutonacheter");
+
+
+//ecouter le bouton et envoyer le panier
+
+btn_envoyerPanier.addEventListener("click",(event)=>{
+  event.preventDefault();
+  //mettre le choix de l'utilisateur dans une variable
+
+var choixForm = document.getElementById("option_produit").value;
+console.log(choixForm);
+
+
+
+
+
+//--------------------------------local storage---------------------------------------------
+
+//stoker les valeur du formulaire dans le local storage
+//declaration de variable pour les clef du localstorage
+let produitEnregistreDansLeLocalsrorage = JSON.parse(localStorage.getItem("produit"));
+//si il y a deja des produit dans le localstorage
+if(produitEnregistreDansLeLocalsrorage){
+  let produitidlentille = [
+    id, choixForm 
+  ];
+  produitEnregistreDansLeLocalsrorage.push(produitidlentille);
+  console.log(produitEnregistreDansLeLocalsrorage);
+  localStorage.setItem("produit", JSON.stringify(produitEnregistreDansLeLocalsrorage));
+
+}
+//si pas de produit dans le local storage
+else{
+  produitEnregistreDansLeLocalsrorage = [];
+  let produitidlentille = [
+    id, choixForm 
+  ];
+  produitEnregistreDansLeLocalsrorage.push(produitidlentille);
+  console.log(produitEnregistreDansLeLocalsrorage);
+  localStorage.setItem("produit", JSON.stringify(produitEnregistreDansLeLocalsrorage));
+}
+
+});
+
+
+
+
