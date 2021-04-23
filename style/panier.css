@@ -1,0 +1,103 @@
+*, ::before, ::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:rgb(252, 230, 190);
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.block{
+    width: 500px;
+    height: auto;
+    padding: 25px;
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0 0 10px white;
+}
+
+h3{
+    color: rgb(182, 119, 61);
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 45px;
+}
+
+.blocformulaire .sectionduformulaire{
+    position: relative;
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.blocformulaire .sectionduformulaire label{
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+    color: rgba(172, 169, 169, 0.699);
+    font-size: 20px;
+    transition: 0.4s ease-out;
+}
+
+.blocformulaire .sectionduformulaire input{
+    display: block;
+    width: 100%;
+    padding: 10px 0px;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 3px solid rgb(182, 119, 61);
+    color: lightgray;
+    transition: 0.4s ease-out;
+}
+
+.sectionduformulaire:nth-child(4){
+    margin-bottom: 65px;
+    justify-content: center;
+}
+
+.blocformulaire .sectionduformulaire .boutonCommander{
+    display: block;
+    width: auto;
+    padding: 15px 60px;
+    border: 3px solid rgb(182, 119, 61);
+    border-radius: 999px;
+    background-image: linear-gradient(to right, transparent 50%, rgb(182, 119, 61) 50%, rgb(252, 230, 190));
+    background-size: 200%;
+    color: rgb(182, 119, 61);
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blocformulaire .sectionduformulaire .boutonCommander:hover{
+    color: white;
+    background-position: 100%;
+    border: 3px solid white;
+}
+
+
+
+
+/* animation des sections du formulaire*/
+
+.blocformulaire .sectionduformulaire:focus-within label, 
+.blocformulaire .sectionduformulaire.animation label{
+    top: 0px;
+    transform: translateY(-100%);
+    color: rgb(182, 119, 61);
+}
+
+.blocformulaire .sectionduformulaire:focus-within input, 
+.blocformulaire .sectionduformulaire.animation input{
+    border-bottom-color: rgb(182, 119, 61);
+}

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Site de E-commerce Orinoco qui vous propose plusieurs produits de très bonne qualité.">
+    <link rel="stylesheet" type="text/css" href="/style/panier.css">
+    <title>Panier</title>
+
+    </head>
+    <body>
+
+        <h1>Votre panier:</h1>
+
+        <div id="descriptionarticle"></div>
+
+        <div class="block" method="POST">
+            <form action="index.html" class="blocformulaire" id="inscription">
+                <h3><strong>Commande</strong></h3>
+                <div class="sectionduformulaire">
+                    <label for="lastName">Nom</label>
+                    <input type="text" name="lastName" id="lastname"  maxlength="10">
+                </div>
+                <div class="sectionduformulaire">
+                    <label for="firstname">Prénom</label>
+                    <input type="text" name="firstname" id="firstname"  maxlength="10">
+                </div>
+                <div class="sectionduformulaire">
+                    <label for="email">Mail</label>
+                    <input type="email" name="email" id="email">
+                </div>
+                <div class="sectionduformulaire">
+                    <label for="address">Adresse</label>
+                    <input type="address" name="address" id="address">
+                </div>
+                <div class="sectionduformulaire">
+                    <label for="city">Ville</label>
+                    <input type="city" name="city" id="city">
+                </div>
+
+                <div class="sectionduformulaire">
+                    <input type="submit" id="commander" value="Commander" class="boutonCommander">
+                </div>
+    
+            </form>
+        </div>
+
+
+
+        <script type="text/javascript">
+            // animation identifiant et mdp 
+    
+            const inputs = document.querySelectorAll('input');
+    
+            for (let i = 0; i < inputs.length; i++) {
+    
+                let field = inputs[i];
+    
+                field.addEventListener('input', (e) => {
+    
+                    if (e.target.value != "") {
+                        e.target.parentNode.classList.add('animation');
+                    } else if (e.target.value == "") {
+                        e.target.parentNode.classList.remove('animation');
+                    }
+                })
+            }
+    
+            
+    
+    
+    
+        </script>
+        <script src="JS/articles.js"></script>
+        <script src="JS/panier.js"></script>
+    </body>
+</html>
