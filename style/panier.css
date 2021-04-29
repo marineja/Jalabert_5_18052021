@@ -14,6 +14,13 @@ body{
     flex-direction: column;
 }
 
+i{
+    font-size: 30px;
+    color: rgb(182, 119, 61);
+   
+
+    
+}
 
 #container{
     width: 1000px;
@@ -103,7 +110,21 @@ h3{
     border: 3px solid white;
 }
 
-
+.suprimmerlesarticles{
+    display: block;
+    width: auto;
+    padding: 15px 60px;
+    border: 3px solid rgb(182, 119, 61);
+    border-radius: 999px;
+    background-image: linear-gradient(to right, transparent 50%, rgb(182, 119, 61) 50%, rgb(252, 230, 190));
+    background-size: 200%;
+    color: rgb(182, 119, 61);
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 /* animation des sections du formulaire*/

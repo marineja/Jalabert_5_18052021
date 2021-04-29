@@ -1,16 +1,8 @@
 
-//var allarticles = recherchedinfocamera();
-//var allarticleJSON = JSON.parse(allarticles);
-
-
-
-
-
 
 let produitEnregistreDansLeLocalsrorage = JSON.parse(localStorage.getItem("produit"));
 console.log(produitEnregistreDansLeLocalsrorage);
 produitEnregistreDansLeLocalsrorage.forEach(function(element, index, array) {
-  console.log(index);
   console.log(element[0]);
   var onearticle = JSON.parse(recherchedinfocamera(element[0]));
   console.log(onearticle);
@@ -34,17 +26,59 @@ produitEnregistreDansLeLocalsrorage.forEach(function(element, index, array) {
     prixText = prixText + " €";
     prix.innerText = prixText;
 
+    //Création corbeille
+    let blocksupression = document.createElement("button");
+    blocksupression.setAttribute("class","suprimerarticle");
+    let corbeille = document.createElement("i");
+    corbeille.setAttribute("class","fas fa-trash-alt");
+    corbeille.addEventListener('click', function(){
+      let newtable = array;
+      newtable.splice(index, 1);
+      let newtablestring = JSON.stringify(newtable);
+      localStorage.setItem("produit", newtablestring);
+      window.location.href = "panier.html";
+
+
+    });
+
     card.appendChild(image);
     card.appendChild(titre);
     card.appendChild(prix);
+    card.appendChild(blocksupression);
+    blocksupression.appendChild(corbeille);
     container.appendChild(card);
+  
+    //-----------------------bouton vier le panier----------------------------------------------------
+    let viderpanier = document.getElementById("viderpanier");
+
+    let boutonviderlepanier = document.createElement("button");
+    boutonviderlepanier.setAttribute("class", "suprimerlesarticles");
+    boutonviderlepanier.innerHTML = "vider le panier";
+
+
+    viderpanier.appendChild(boutonviderlepanier);
+
 
   
 // ajouter un bouton et un evenement click(sur le bouton) pour suprimer l'element dans le local storage
 
+const suprimerlesarticles = document.querySelector(".suprimerlesarticles");
+
+suprimerlesarticles.addEventListener('click', (e) => {
+  e.preventDefault;
+  localStorage.removeItem("produit");
+  alert("le panier à était vidé")
+
+  //rechargement de la page panier
+  window.location.href = "panier.html";
+})
 
 
 });
+
+// --------------------------------------------------bouton corbeille-----------------------------------
+// selection de toutes les corbeilles
+let suprimerarticle = document.querySelectorAll(".suprimerarticle")
 
 
 
@@ -100,7 +134,7 @@ const panierVide = `
     var inputs = this.getElementsByTagName("input");
 
     if (!lastName.value) {
-        erreur = "Veuillez renseigner un nom";
+        erreur = "Veuillez renseigner un nom"; // remplacer par regex par chacun
     }
     if (!firstName.value) {
       erreur = "Veuillez renseigner un prénom";
@@ -153,4 +187,4 @@ let getprenom = document.getElementById('firstname').value = sessionStorage.getI
 
 // afichage message confirmation commande
 
-let getConfirmation = document.getElementById('confirmation').innerHTML = "Confirmation de commande" + sessionStorage.getItem('lastname');
+// let getConfirmation = document.getElementById('confirmation').innerHTML = "Confirmation de commande" + sessionStorage.getItem('lastname');
