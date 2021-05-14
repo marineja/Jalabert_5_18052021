@@ -48,18 +48,21 @@ produitEnregistreDansLeLocalsrorage.forEach(function(element, index, array) {
     blocksupression.appendChild(corbeille);
     container.appendChild(card);
   
-    //-----------------------bouton vier le panier----------------------------------------------------
-    let viderpanier = document.getElementById("viderpanier");
-
-    let boutonviderlepanier = document.createElement("button");
-    boutonviderlepanier.setAttribute("class", "suprimerlesarticles");
-    boutonviderlepanier.innerHTML = "vider le panier";
-
-
-    viderpanier.appendChild(boutonviderlepanier);
 
 
   
+
+})
+//-----------------------bouton vier le panier----------------------------------------------------
+let viderpanier = document.getElementById("viderpanier");
+
+let boutonviderlepanier = document.createElement("button");
+boutonviderlepanier.setAttribute("class", "suprimerlesarticles");
+boutonviderlepanier.innerHTML = "vider le panier";
+
+
+viderpanier.appendChild(boutonviderlepanier);
+
 // ajouter un bouton et un evenement click(sur le bouton) pour suprimer l'element dans le local storage
 
 const suprimerlesarticles = document.querySelector(".suprimerlesarticles");
@@ -71,8 +74,6 @@ suprimerlesarticles.addEventListener('click', (e) => {
 
   //rechargement de la page panier
   window.location.href = "panier.html";
-})
-
 
 });
 
@@ -88,16 +89,16 @@ let suprimerarticle = document.querySelectorAll(".suprimerarticle")
 const positionElement = document.querySelector("#descriptionarticle");
 console.log( positionElement);
 
-//si panier vide message
+ //si panier vide message
 
-if (produitEnregistreDansLeLocalsrorage === null){
-const panierVide = `
-    <div class="lecontainer-vide">
-        <div>Le panier est vide</div>
-    </div>
-    `;
-    positionElement.innerHTML = panierVide;
-  }
+  if (produitEnregistreDansLeLocalsrorage === null){
+  const panierVide = `
+      <div class="lecontainer-vide">
+          <div>Le panier est vide</div>
+      </div>
+      `;
+      positionElement.innerHTML = panierVide;
+  };
   
 
 
@@ -121,70 +122,80 @@ const panierVide = `
 
   //---------------------------formulaire----------------------------------------
 
-  document.getElementById("inscription").addEventListener("submit", function(e) {
+  document.getElementById("commander").addEventListener("click", function(e) {
    
 
-    var erreur;
-    var lastName = document.getElementById("lastname");
-    var firstName = document.getElementById("firstname");
-    var email = document.getElementById("email");
-    var address = document.getElementById("address");
-    var city = document.getElementById("city");
+  
+      var lastName = document.getElementById("lastname").value;
+      var firstName = document.getElementById("firstname").value;
+      var email = document.getElementById("email").value;
+      var address = document.getElementById("address").value;
+      var city = document.getElementById("city").value;
 
-    var inputs = this.getElementsByTagName("input");
+      //Regex
+      var lastNameRegex = /^[a-zA-Z]/;
+      var firstNameRegex = /^[a-zA-Z]/;
+      var adressRegex = /([0-9]*) ?([a-zA-Z,\. ]*)/g;
+      var emailRegex = /.+@.+\..+/;
+      var cityRegex = /^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/;
 
-    if (!lastName.value) {
-        erreur = "Veuillez renseigner un nom"; // remplacer par regex par chacun
+      var inputs = this.getElementsByTagName("input");
+
+        if (lastNameRegex.test(lastName) == false) {
+            alert ("Veuillez renseigner un nom valide"); 
+            return false;
+        }
+        if (firstNameRegex.test(firstName) == false) {
+          alert ("Veuillez renseigner un prénom valide"); 
+          return false;
+        }
+        if (adressRegex.test(address) == false) {
+          alert ("Veuillez renseigner une adresse valide"); 
+          return false;
+        }
+        if (emailRegex.test(email) == false) {
+          alert ("Veuillez renseigner un mail valide"); 
+          return false;
+        }
+        if (cityRegex.test(city) == false) {
+          alert ("Veuillez renseigner une ville valide"); 
+          return false;
+        }
+
+    var contact = {
+       lastName : document.getElementById('lastname').value,
+       firstName : document.getElementById('firstname').value,
+       email : document.getElementById('email').value,
+       address : document.getElementById('address').value,
+       city : document.getElementById('city').value
+
     }
-    if (!firstName.value) {
-      erreur = "Veuillez renseigner un prénom";
-  }
-    if (!email.value) {
-        erreur = "Veuillez renseigner un email";
+    var order = {
+      "contact" : contact,
+      "products" : produitEnregistreDansLeLocalsrorage.map(el => el[0]) // initialise une variable el et dedans dans chaque element on recupere l'id
     }
-    if (!address.value) {
-      erreur = "Veuillez renseigner une adresse";
-  }
-  if (!city.value) {
-    erreur = "Veuillez renseigner une ville";
-}
+    console.log(order);
+// requete ajax post 
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "http://localhost:3000/api/cameras/order", false);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 201) {
+     // console.log(this.responseText);// stinggifier et enregistrer dans le localstorage ensuite faire une redirection vers la page resultat
+      localStorage.setItem("products",this.responseText);
+      window.location.href = "resultats.html";
+      }
+    };
+    
+    xhttp.send(JSON.stringify(order));
 
-    if (erreur) {
-        e.preventDefault();
-        document.getElementById("erreur").innerHTML = erreur;
-        return false;
-    } else {
-        alert('Formulaire envoyé');
 
-    }
+  });
+    
 
 
     
-})
-
-// sauvegarder les données formulaire dans le localstorage
-
-function resultat(){
-    let lastName = document.getElementById('lastname').value;
-    let firstName = document.getElementById('firstname').value;
-    let email = document.getElementById('email').value;
-    let address = document.getElementById('address').value;
-    let city = document.getElementById('city').value;
 
 
 
-      sessionStorage.setItem('lastname', lastName);
-      sessionStorage.setItem('firstname', firstName);
-      sessionStorage.setItem('email', email);
-      sessionStorage.setItem('address', address);
-      sessionStorage.setItem('city', city);
-}
 
-// recuperation valeur de lutilisateur dans sessionstorage
-
-let getName = document.getElementById('lastname').value = sessionStorage.getItem('lastname');
-let getprenom = document.getElementById('firstname').value = sessionStorage.getItem('firstname');
-
-// afichage message confirmation commande
-
-// let getConfirmation = document.getElementById('confirmation').innerHTML = "Confirmation de commande" + sessionStorage.getItem('lastname');

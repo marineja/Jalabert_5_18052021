@@ -61,4 +61,3 @@ function recherchedinfocamera() {
   }
 
 
-//recuperation des données selectionnées par l'utilisateur et envoie du panier

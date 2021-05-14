@@ -1,9 +1,13 @@
+
+
 .container {
   max-width: 960px;
+  background:rgb(252, 230, 190);
 }
 
 .pricing-header {
   max-width: 700px;
+  background:rgb(252, 230, 190);
 }
 .logo{
   width: 200px;
