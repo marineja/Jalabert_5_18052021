@@ -1,17 +1,49 @@
 
 
 .container {
-  max-width: 960px;
-  background:rgb(252, 230, 190);
+  margin: 20px;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.onearticle{
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 20px;
+  cursor: pointer;
+  margin: 30px auto;
+	border-radius: 10px;
+	box-shadow: 0 0 5px silver;
+	display: block;
+	position: relative;
+	text-decoration: none;
+  text-align: center;
+  color: black;
+  width: 700px;
+}
+.imagecamera{
+  width: 350px;
+  border-radius: 10px;
+  vertical-align: middle;
+  padding-bottom: 20px;;
+
+}
+.logo{
+  width: 200px;
+	height: 200px;
+  border-radius: 10px;
 }
 
-.pricing-header {
+/*.pricing-header {
   max-width: 700px;
   background:rgb(252, 230, 190);
 }
 .logo{
   width: 200px;
 	height: 200px;
+  border-radius: 10px;
 }
 
 .imagecamera{
@@ -19,7 +51,7 @@
   width: 150px;
   border-radius: 10px;
   vertical-align: middle;
-}
+}/*
 
 
 .onearticle{

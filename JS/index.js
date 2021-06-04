@@ -1,9 +1,10 @@
 
-
-var allarticles = recherchedinfocamera();
-console.log(allarticles);
-var allarticleJSON = JSON.parse(allarticles);
-console.log(allarticleJSON);
+fetch("http://localhost:3000/api/cameras/") //appel de l'API 
+.then(res => res.json())
+.then(res => {
+  console.log(res);
+  var allarticleJSON = res;
+  console.log(allarticleJSON);
 
 allarticleJSON.forEach(element => {
     console.log(element.name);
@@ -43,21 +44,13 @@ allarticleJSON.forEach(element => {
   
 
 });
+})
 
 
-// fonction ajax pour aller chercher l'API 
 
-function recherchedinfocamera() {
-    var articles;
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-      articles = this.responseText;
-      }
-    };
-    xhttp.open("GET", "http://localhost:3000/api/cameras", false);
-    xhttp.send();
-    return articles;
-  }
+
+    
+
+
 
 

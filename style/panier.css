@@ -7,7 +7,6 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
     background:rgb(252, 230, 190);
-    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
