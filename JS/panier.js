@@ -53,7 +53,7 @@ produitEnregistreDansLeLocalsrorage.forEach(function(element, index, array) {
   
 
 })
-//-----------------------bouton vier le panier----------------------------------------------------
+//-----------------------bouton viderer le panier----------------------------------------------------
 let viderpanier = document.getElementById("viderpanier");
 
 let boutonviderlepanier = document.createElement("button");
@@ -70,7 +70,7 @@ const suprimerlesarticles = document.querySelector(".suprimerlesarticles");
 suprimerlesarticles.addEventListener('click', (e) => {
   e.preventDefault;
   localStorage.removeItem("produit");
-  alert("le panier à était vidé")
+  alert("le panier est vide")
 
   //rechargement de la page panier
   window.location.href = "panier.html";

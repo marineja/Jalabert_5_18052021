@@ -1,4 +1,4 @@
-/* recuperer l'id de l'url */
+/* recuperer l'id de l'url de la page du produit */
 const params = new URLSearchParams(document.location.search);
 const id = params.get("id");
 console.log(id);
@@ -80,9 +80,9 @@ fetch("http://localhost:3000/api/cameras/"+id) //appel de l'API
 
 
     //ecouter le bouton et envoyer le panier
-    alert("coucou");
+    
     btn_envoyerPanier.addEventListener("click",(event)=>{
-      alert("marche");
+      
       event.preventDefault();
     
     
@@ -99,7 +99,7 @@ fetch("http://localhost:3000/api/cameras/"+id) //appel de l'API
     //--------------------------------local storage---------------------------------------------
     
     //stoker les valeur du formulaire dans le local storage
-    //declaration de variable pour les clef du localstorage
+    //declaration de variable pour les clefs du localstorage
     let produitEnregistreDansLeLocalsrorage = JSON.parse(localStorage.getItem("produit"));
     //si il y a deja des produit dans le localstorage
     if(produitEnregistreDansLeLocalsrorage){
@@ -108,7 +108,7 @@ fetch("http://localhost:3000/api/cameras/"+id) //appel de l'API
       ];
       produitEnregistreDansLeLocalsrorage.push(produitidlentille);
       console.log(produitEnregistreDansLeLocalsrorage);
-      localStorage.setItem("produit", JSON.stringify(produitEnregistreDansLeLocalsrorage));
+      localStorage.setItem("produit", JSON.stringify(produitEnregistreDansLeLocalsrorage));// on envoie les infos au localstorage
     
     }
     //si pas de produit dans le local storage
@@ -119,7 +119,7 @@ fetch("http://localhost:3000/api/cameras/"+id) //appel de l'API
       ];
       produitEnregistreDansLeLocalsrorage.push(produitidlentille);
       console.log(produitEnregistreDansLeLocalsrorage);
-      localStorage.setItem("produit", JSON.stringify(produitEnregistreDansLeLocalsrorage));
+      localStorage.setItem("produit", JSON.stringify(produitEnregistreDansLeLocalsrorage)); // on envoie les infos au localstorage
     }
     
     });

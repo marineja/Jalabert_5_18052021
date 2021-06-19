@@ -1,6 +1,6 @@
 afficheOrderId();
 function afficheOrderId (){
-// rechercher lorder id dans le local storage(parse)
+// rechercher l'order id dans le local storage(parse)
 
 let products = JSON.parse(localStorage.getItem("products"));
 console.log(products);
